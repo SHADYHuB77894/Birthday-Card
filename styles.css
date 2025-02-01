@@ -8,17 +8,27 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(45deg, #000000, #ff69b4); /* Black and pink gradient */
+    background-size: 400% 400%; /* For smooth transitions */
+    animation: gradientAnimation 15s ease infinite; /* Animation duration and loop */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .card {
-    width: 400px;
-    height: 600px;
+    width: 250px; /* Reduced width for a smaller card */
+    height: 350px; /* Reduced height for a smaller card */
     perspective: 1000px;
+    animation: cardAnimation 2s infinite alternate; /* Smooth back and forth animation */
 }
 
 .front, .back {
@@ -34,6 +44,7 @@ body {
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px; /* Reduced padding for smaller card */
 }
 
 .front {
@@ -54,15 +65,20 @@ body {
 .card.flipped .back {
     transform: rotateY(0deg);
 }
-/* styles.css */
 
-.card {
-    /* Previous styles... */
-    animation: cardAnimation 2s infinite alternate; /* Smooth back and forth animation */
+/* Adjust font sizes for smaller card */
+.front h1 {
+    font-size: 2em; /* Smaller font size */
+    margin-bottom: 10px;
 }
 
+.front p {
+    font-size: 1em; /* Smaller font size */
+    margin-top: 15px;
+}
+
+/* Smooth card motion */
 @keyframes cardAnimation {
     0% { transform: rotateY(0deg); }
     100% { transform: rotateY(20deg); }
-
 }
