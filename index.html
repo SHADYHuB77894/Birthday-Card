@@ -21,26 +21,16 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            position: relative; /* Ensure fireworks stay behind the card */
             background: linear-gradient(45deg, #000000, #ff69b4); /* Black and pink gradient */
             background-size: 400% 400%; /* For smooth transitions */
             animation: gradientAnimation 15s ease infinite; /* Animation duration and loop */
         }
 
-        /* Fireworks Background */
-        #fireworks-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place fireworks behind everything */
-        }
-
         .card {
-            width: 90%; /* Adjusted width for better mobile view */
-            max-width: 500px; /* Maximum width on larger screens */
-            height: auto; /* Adjust height automatically based on content */
+            width: 90%; /* Card takes up 90% of the screen width */
+            max-width: 500px; /* Limit maximum width for larger screens */
+            height: auto; /* Height adjusts automatically based on content */
+            aspect-ratio: 3 / 2; /* Maintain a consistent width-to-height ratio */
             perspective: 1000px;
             animation: cardAnimation 2s infinite alternate; /* Smooth back and forth animation */
         }
@@ -58,7 +48,7 @@
             text-align: center;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px; /* Default padding */
+            padding: 5%; /* Relative padding for better scaling */
             overflow-y: auto; /* Allow scrolling if content overflows */
         }
 
@@ -84,20 +74,20 @@
         /* Apply custom fonts */
         .front h1, .back h1 {
             font-family: 'Pacifico', cursive; /* Use Pacifico for headings */
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 6vw; /* Font size scales with viewport width */
+            margin-bottom: 5%;
         }
 
         .front p, .back p {
             font-family: 'Poppins', sans-serif; /* Use Poppins for body text */
-            font-size: 1.2em;
-            margin-top: 15px;
+            font-size: 4vw; /* Font size scales with viewport width */
+            margin-top: 3%;
         }
 
         footer p {
             font-family: 'Poppins', sans-serif; /* Footer text */
-            font-size: 1em;
-            margin-top: 20px;
+            font-size: 3.5vw; /* Smaller font size for footer */
+            margin-top: 5%;
         }
 
         /* Smooth Card Motion */
@@ -114,30 +104,44 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 600px) {
+        @media (max-width: 400px) {
             .card {
                 width: 95%; /* Slightly wider on very small screens */
-                height: auto;
-            }
-
-            .front, .back {
-                padding: 15px; /* Reduced padding for smaller screens */
             }
 
             .front h1, .back h1 {
-                font-size: 1.8em; /* Smaller heading font size for mobile */
+                font-size: 8vw; /* Larger font size for readability on tiny screens */
             }
 
             .front p, .back p {
-                font-size: 0.9em; /* Smaller paragraph font size for mobile */
+                font-size: 5vw; /* Adjust paragraph font size */
+            }
+
+            footer p {
+                font-size: 4vw; /* Adjust footer font size */
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                width: 70%; /* Narrower card on larger screens */
+            }
+
+            .front h1, .back h1 {
+                font-size: 4vw; /* Smaller font size for larger screens */
+            }
+
+            .front p, .back p {
+                font-size: 2.5vw; /* Adjust paragraph font size */
+            }
+
+            footer p {
+                font-size: 2vw; /* Adjust footer font size */
             }
         }
     </style>
 </head>
 <body>
-    <!-- Fireworks Container -->
-    <div id="fireworks-container"></div>
-
     <!-- Card -->
     <div class="card">
         <div class="front">
@@ -145,90 +149,21 @@
             <p>Click to open the card</p>
         </div>
         <div class="back">
-            <h1>Happy Birthday, [Her Name]!</h1>
-            <p>Today is a special day because it's your birthday! 🎉</p>
-            <p>I wanted to create something unique just for you. You make every day brighter, and I'm so grateful to have you in my life.</p>
-            <p>Wishing you all the happiness in the world today and always. 💖</p>
-            <footer>
-                <p>With all my love, <br>[Your Name]</p>
-            </footer>
+            <h1>Happy Birthday, JOJO💖</h1>
+            <p>Happy Birthday to the most amazing girl in the universe You’re my favorite person to laugh with, and the one who can't live without. Let’s make this year unforgettable together</p>
         </div>
     </div>
 
-    <!-- Fireworks Script -->
-    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.0.4/dist/fireworks.min.js"></script>
+    <!-- JavaScript for Card Flip -->
     <script>
-        // Initialize Fireworks
-        const fireworksContainer = document.getElementById('fireworks-container');
-        const fireworks = new Fireworks(fireworksContainer, {
-            speed: 3,
-            acceleration: 1.05,
-            friction: 0.97,
-            gravity: 1.5,
-            particles: 50,
-            trace: 3,
-            explosion: 5,
-            intensity: 30,
-            flickering: 50,
-            lineStyle: 'round',
-            hue: {
-                min: 0,
-                max: 360
-            },
-            delay: {
-                min: 30,
-                max: 60
-            },
-            rocketsPoint: {
-                min: 50,
-                max: 50
-            },
-            lineWidth: {
-                explosion: {
-                    min: 1,
-                    max: 3
-                },
-                trace: {
-                    min: 1,
-                    max: 2
-                }
-            },
-            brightness: {
-                min: 50,
-                max: 80
-            },
-            decay: {
-                min: 0.015,
-                max: 0.03
-            },
-            mouse: {
-                click: false, // Disable fireworks on click to avoid conflicts
-                move: false,
-                max: 3
-            }
-        });
-
-        fireworks.start();
-
         // Card Flip Logic
         document.addEventListener('DOMContentLoaded', function () {
             const card = document.querySelector('.card');
 
             // Add click event listener to the card
-            card.addEventListener('click', function (event) {
-                // Stop the event from propagating to the fireworks container
-                event.stopPropagation();
+            card.addEventListener('click', function () {
                 card.classList.toggle('flipped');
             });
-        });
-
-        // Optional Enhancement: Trigger fireworks only when clicking outside the card
-        document.addEventListener('click', function (event) {
-            const card = document.querySelector('.card');
-            if (!card.contains(event.target)) {
-                // Trigger fireworks only if the click is outside the card
-                fireworks.start();
-            }
         });
     </script>
 </body>
