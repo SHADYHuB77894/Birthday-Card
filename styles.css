@@ -30,9 +30,10 @@ body {
 }
 
 .card {
-    width: 90%; /* Make the card take up 90% of the screen width */
-    max-width: 500px; /* Limit the maximum width for larger screens */
-    height: auto; /* Adjust height automatically based on content */
+    width: 90%; /* Card takes up 90% of the screen width */
+    max-width: 500px; /* Limit maximum width for larger screens */
+    height: auto; /* Height adjusts automatically based on content */
+    aspect-ratio: 3 / 2; /* Maintain a consistent width-to-height ratio */
     perspective: 1000px;
     animation: cardAnimation 2s infinite alternate; /* Smooth back and forth animation */
 }
