@@ -30,8 +30,8 @@ body {
 }
 
 .card {
-    width: 80%; /* Adjusted width for better mobile view */
-    max-width: 500px; /* Maximum width on larger screens */
+    width: 90%; /* Make the card take up 90% of the screen width */
+    max-width: 500px; /* Limit the maximum width for larger screens */
     height: auto; /* Adjust height automatically based on content */
     perspective: 1000px;
     animation: cardAnimation 2s infinite alternate; /* Smooth back and forth animation */
@@ -50,7 +50,8 @@ body {
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Adjusted padding for better mobile view */
+    padding: 20px; /* Default padding */
+    overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
 .front {
@@ -107,15 +108,19 @@ footer p {
 /* Responsive Design */
 @media (max-width: 600px) {
     .card {
-        width: 90%; /* Make the card responsive on smaller screens */
-        height: auto; /* Adjust height automatically */
+        width: 95%; /* Slightly wider on very small screens */
+        height: auto;
+    }
+
+    .front, .back {
+        padding: 15px; /* Reduced padding for smaller screens */
     }
 
     .front h1, .back h1 {
-        font-size: 2em; /* Smaller font size for mobile */
-    }a
+        font-size: 1.8em; /* Smaller heading font size for mobile */
+    }
 
     .front p, .back p {
-        font-size: 1em; /* Smaller font size for mobile */
+        font-size: 0.9em; /* Smaller paragraph font size for mobile */
     }
 }
